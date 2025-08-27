@@ -5,7 +5,7 @@
         </div>
         <div id="batalha">
             <div class="personagem personagem-atacante">
-                <img :src="import.meta.env.BASE_URL + '/images/personagens/' + jogadorAtacante.getPersonagem().getImg()"
+                <img :src="baseUrl + '/images/personagens/' + jogadorAtacante.getPersonagem().getImg()"
                     alt="Imagem do personagem" />
                 <div class="atributos-do-personagem">
                     <p class="nome">{{ jogadorAtacante.getNome() }}</p>
@@ -19,7 +19,7 @@
                     <p class="nome">{{ jogadorAtacado.getNome() }}</p>
                     <p class="vida">❤️ {{ jogadorAtacado.getPersonagem().getVida() }}</p>
                 </div>
-                <img :src="import.meta.env.BASE_URL + '/images/personagens/' + jogadorAtacado.getPersonagem().getImg()"
+                <img :src="baseUrl + '/images/personagens/' + jogadorAtacado.getPersonagem().getImg()"
                     alt="Imagem do personagem" />
             </div>
         </div>
@@ -53,6 +53,8 @@ const props = defineProps<{
     jogadorAtacado: IJogador,
     perguntas: IPerguntas,
 }>();
+
+const baseUrl = import.meta.env.BASE_URL;
 
 const caixaDeDialogo = ref<CaixaDeDialogo>('pergunta')
 const pergunta = ref<Pergunta>(carregarPergunta());

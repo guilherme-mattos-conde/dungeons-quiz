@@ -5,13 +5,13 @@
             <h2>{{ jogador.getNome() }}</h2>
         </div>
         <div id="selecao-habilidade">
-            <img class="img-personagem" :src="import.meta.env.BASE_URL + '/images/personagens/' + jogador.getPersonagem().getImg()"
+            <img class="img-personagem" :src="baseUrl + '/images/personagens/' + jogador.getPersonagem().getImg()"
                 alt="Imagem do personagem" />
             <div class="habilidades">
                 <h3>Habilidades</h3>
                 <ul>
                     <li v-for="habilidade in jogador.getPersonagem().getHabilidades()">
-                        <img :src="import.meta.env.BASE_URL + '/images/habilidades/' + habilidade.getImg()" :alt="'Imagem ' + habilidade.getNome()"
+                        <img :src="baseUrl + '/images/habilidades/' + habilidade.getImg()" :alt="'Imagem ' + habilidade.getNome()"
                         @click="avancar(habilidade)" />
                     </li>
                 </ul>
@@ -30,6 +30,8 @@ const emit = defineEmits(["avancar", "update:habilidadeSelecionada"]);
 const props = defineProps<{
   jogador: IJogador
 }>();
+
+const baseUrl = import.meta.env.BASE_URL;
 
 function avancar(habilidade: Habilidade) {
     emit('update:habilidadeSelecionada', props.jogador, habilidade)
