@@ -10,12 +10,12 @@
         </header>
         <div id="selecao-personagens">
             <div class="personagem-selecionado">
-                <img class="img-personagem-selecionado" :src="'/images/personagens/' + jogador.getPersonagem().getImg()" alt="Imagem do personagem" />
+                <img class="img-personagem-selecionado" :src="import.meta.env.BASE_URL + '/images/personagens/' + jogador.getPersonagem().getImg()" alt="Imagem do personagem" />
                 <div class="habilidades">
                     <h3>Habilidades</h3>
                     <ul>
                         <li v-for="habilidade in jogador.getPersonagem().getHabilidades()">
-                            <img :src="'/images/habilidades/' + habilidade.getImg()" :alt="'Imagem ' + habilidade.getNome()" />
+                            <img :src="import.meta.env.BASE_URL + '/images/habilidades/' + habilidade.getImg()" :alt="'Imagem ' + habilidade.getNome()" />
                         </li>
                     </ul>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="personagem" v-for="personagem in personagens"
                     :class="{ selecionado: jogador.getPersonagem().getNome() === personagem.getNome() }"
                     @click="emit('update:personagem', jogador, personagem)">
-                    <img :src="'/images/personagens/' + personagem.getImg()" :alt="'Imagem ' + personagem.getNome()" />
+                    <img :src="import.meta.env.BASE_URL + '/images/personagens/' + personagem.getImg()" :alt="'Imagem ' + personagem.getNome()" />
                 </div>
             </div>
         </div>

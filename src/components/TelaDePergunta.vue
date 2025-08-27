@@ -5,7 +5,7 @@
         </div>
         <div id="batalha">
             <div class="personagem personagem-atacante">
-                <img :src="'/images/personagens/' + jogadorAtacante.getPersonagem().getImg()"
+                <img :src="import.meta.env.BASE_URL + '/images/personagens/' + jogadorAtacante.getPersonagem().getImg()"
                     alt="Imagem do personagem" />
                 <div class="atributos-do-personagem">
                     <p class="nome">{{ jogadorAtacante.getNome() }}</p>
@@ -19,7 +19,7 @@
                     <p class="nome">{{ jogadorAtacado.getNome() }}</p>
                     <p class="vida">❤️ {{ jogadorAtacado.getPersonagem().getVida() }}</p>
                 </div>
-                <img :src="'/images/personagens/' + jogadorAtacado.getPersonagem().getImg()"
+                <img :src="import.meta.env.BASE_URL + '/images/personagens/' + jogadorAtacado.getPersonagem().getImg()"
                     alt="Imagem do personagem" />
             </div>
         </div>
