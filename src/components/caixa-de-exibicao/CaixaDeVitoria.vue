@@ -30,8 +30,11 @@ defineProps<{
     background: rgba(255, 255, 255, 0.8);
 
     #btn-finalizar {
-        cursor: pointer;
         height: 70px;
+    }
+    
+    #btn-finalizar:hover {
+        cursor: pointer;
     }
 }
 </style>

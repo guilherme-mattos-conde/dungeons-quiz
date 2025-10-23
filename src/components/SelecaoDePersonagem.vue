@@ -10,7 +10,9 @@
         </header>
         <div id="selecao-personagens">
             <div class="personagem-selecionado">
-                <img class="img-personagem-selecionado" :src="baseUrl + '/images/personagens/' + jogador.getPersonagem().getImg()" alt="Imagem do personagem" />
+                <div id="container-img-personagem">
+                    <img class="img-personagem-selecionado" :src="baseUrl + '/images/personagens/' + jogador.getPersonagem().getImg()" alt="Imagem do personagem" />
+                </div>
                 <div class="habilidades">
                     <h3>Habilidades</h3>
                     <ul>
@@ -55,8 +57,10 @@ const personagens = [new Barbaro(), new Mago(), new Rainha(), new Mumia()];
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    min-width: 100vw;
+    width: 100%;
     background: url('/images/fundo-selecionar-personagens.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -65,13 +69,12 @@ const personagens = [new Barbaro(), new Mago(), new Rainha(), new Mumia()];
 }
 #menu {
     display: flex;
-    align-items:flex-start;
+    align-items: center;
     justify-content: space-between;
     width: 95vw;
-    margin: 20px 0;
 
     #titulo {
-        font-size: 20pt;
+        font-size: 18pt;
         color: white;
     }
 
@@ -83,7 +86,12 @@ const personagens = [new Barbaro(), new Mago(), new Rainha(), new Mumia()];
     }
 }
 #selecao-personagens {
-    margin-top: 10px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
 
     .personagem-selecionado {
         display: flex;
@@ -116,7 +124,7 @@ const personagens = [new Barbaro(), new Mago(), new Rainha(), new Mumia()];
 }
 #menu-personagens {
     display: flex;
-    align-items: center;
+    align-items: spa;
     justify-content: space-between;
 
     img {
@@ -127,6 +135,74 @@ const personagens = [new Barbaro(), new Mago(), new Rainha(), new Mumia()];
     .selecionado {
         img {
             border: 2px solid white;
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    #menu {
+        #titulo {
+            font-size: 10pt;
+        }
+        .btn {
+            width: 100px;
+        }
+    }
+
+    #selecao-personagens {
+        gap: 1rem;
+        margin: 1rem 0;
+
+        .personagem-selecionado {
+            display: flex;
+            justify-content: start;
+            width: 100%;
+    
+            #container-img-personagem {
+                width: 50%;
+            }
+            .img-personagem-selecionado {
+                width: 75%;
+            }
+        
+            .habilidades {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                h3 {
+                    font-size: 15pt;
+                }
+                ul {
+                    margin-top: 1rem;
+                }
+                img {
+                    width: 80%;
+                }
+            }
+        }
+    }
+
+    #menu-personagens {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .personagem {
+            width: 50%;
+            margin-bottom: 1rem;
+        }
+
+        img {
+            cursor: pointer;
+            width: 75%;
+            border: 2px solid transparent;
+        }
+        .selecionado {
+            img {
+                border: 2px solid white;
+            }
         }
     }
 }

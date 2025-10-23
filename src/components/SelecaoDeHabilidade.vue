@@ -5,8 +5,10 @@
             <h2>{{ jogador.getNome() }}</h2>
         </div>
         <div id="selecao-habilidade">
-            <img class="img-personagem" :src="baseUrl + '/images/personagens/' + jogador.getPersonagem().getImg()"
-                alt="Imagem do personagem" />
+            <div id="container-img-personagem">
+                <img class="img-personagem" :src="baseUrl + '/images/personagens/' + jogador.getPersonagem().getImg()"
+                    alt="Imagem do personagem" />
+            </div>
             <div class="habilidades">
                 <h3>Habilidades</h3>
                 <ul>
@@ -44,8 +46,10 @@ function avancar(habilidade: Habilidade) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    min-width: 100vw;
+    width: 100%;
     background: url('/images/fundo-tela-pergunta.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -55,18 +59,18 @@ function avancar(habilidade: Habilidade) {
 
 #titulo {
     text-align: center;
-    margin: 20px 0;
-    font-size: 20pt;
+    margin-top: 40px;
+    font-size: 18pt;
     color: white;
 }
 
 #selecao-habilidade {
-    margin-top: 80px;
     display: flex;
+    flex-grow: 1;
     justify-content: space-around;
     align-items: center;
     width: 750px;
-    margin-bottom: 25px;
+    margin: 2rem 0;
 
     .img-personagem {
         width: 280px;
@@ -92,6 +96,37 @@ function avancar(habilidade: Habilidade) {
 
         img {
             width: 320px;
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    #titulo {
+        font-size: 10pt;
+    }
+
+    #selecao-habilidade {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+
+        .img-personagem {
+            width: 65%;
+        }
+    
+        .habilidades {
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+            h3 {
+                font-size: 15pt;
+            }
+            ul {
+                margin-top: 1rem;
+            }
+            img {
+                width: 80%;
+            }
         }
     }
 }

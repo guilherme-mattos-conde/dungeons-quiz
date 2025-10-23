@@ -30,8 +30,11 @@ defineProps({
     background: rgba(255, 255, 255, 0.8);
 
     #btn-proximo-turno {
-        cursor: pointer;
         height: 80px;
+    }
+
+    #btn-proximo-turno:hover {
+        cursor: pointer;
     }
 }
 

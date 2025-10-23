@@ -1,24 +1,22 @@
 <template>
     <Suspense>
         <template #default>
-            <div>
-                <TelaInicial :perguntas="perguntas" v-if="tela === 'telaInicial'" @avancar="tela = 'selecaoDePersonagemJogador1'"/>
-                <SelecaoDePersonagem :jogador="jogador1" v-else-if="tela === 'selecaoDePersonagemJogador1'"
-                @update:personagem="atualizarPersonagem" @voltar="tela = 'telaInicial'" @avancar="tela = 'selecaoDePersonagemJogador2'"/>
-                <SelecaoDePersonagem :jogador="jogador2" v-else-if="tela === 'selecaoDePersonagemJogador2'"
-                @update:personagem="atualizarPersonagem" @voltar="tela = 'selecaoDePersonagemJogador1'" @avancar="tela = 'selecaoDeHabilidadeJogador1'"/>
-                <SelecaoDeHabilidade :jogador="jogador1" v-else-if="tela === 'selecaoDeHabilidadeJogador1'"
-                @update:habilidadeSelecionada="atualizarHabilidadeSelecionada" @avancar="tela = 'TelaDePerguntaJogador1'"/>
-                <TelaDePergunta :jogadorAtacante="jogador1" :jogadorAtacado="jogador2" :perguntas="perguntas" v-else-if="tela === 'TelaDePerguntaJogador1'"
-                @avancar="tela = 'selecaoDeHabilidadeJogador2'" @finalizar="iniciarNovoJogo"/>
-                <SelecaoDeHabilidade :jogador="jogador2" v-else-if="tela === 'selecaoDeHabilidadeJogador2'"
-                @update:habilidadeSelecionada="atualizarHabilidadeSelecionada" @avancar="tela = 'TelaDePerguntaJogador2'"/>
-                <TelaDePergunta :jogadorAtacante="jogador2" :jogadorAtacado="jogador1" :perguntas="perguntas"v-else-if="tela === 'TelaDePerguntaJogador2'"
-                @avancar="tela = 'selecaoDeHabilidadeJogador1'" @finalizar="iniciarNovoJogo"/>
-            </div>
+            <TelaInicial :perguntas="perguntas" v-if="tela === 'telaInicial'" @avancar="tela = 'selecaoDePersonagemJogador1'"/>
+            <SelecaoDePersonagem :jogador="jogador1" v-else-if="tela === 'selecaoDePersonagemJogador1'"
+            @update:personagem="atualizarPersonagem" @voltar="tela = 'telaInicial'" @avancar="tela = 'selecaoDePersonagemJogador2'"/>
+            <SelecaoDePersonagem :jogador="jogador2" v-else-if="tela === 'selecaoDePersonagemJogador2'"
+            @update:personagem="atualizarPersonagem" @voltar="tela = 'selecaoDePersonagemJogador1'" @avancar="tela = 'selecaoDeHabilidadeJogador1'"/>
+            <SelecaoDeHabilidade :jogador="jogador1" v-else-if="tela === 'selecaoDeHabilidadeJogador1'"
+            @update:habilidadeSelecionada="atualizarHabilidadeSelecionada" @avancar="tela = 'TelaDePerguntaJogador1'"/>
+            <TelaDePergunta :jogadorAtacante="jogador1" :jogadorAtacado="jogador2" :perguntas="perguntas" v-else-if="tela === 'TelaDePerguntaJogador1'"
+            @avancar="tela = 'selecaoDeHabilidadeJogador2'" @finalizar="iniciarNovoJogo"/>
+            <SelecaoDeHabilidade :jogador="jogador2" v-else-if="tela === 'selecaoDeHabilidadeJogador2'"
+            @update:habilidadeSelecionada="atualizarHabilidadeSelecionada" @avancar="tela = 'TelaDePerguntaJogador2'"/>
+            <TelaDePergunta :jogadorAtacante="jogador2" :jogadorAtacado="jogador1" :perguntas="perguntas"v-else-if="tela === 'TelaDePerguntaJogador2'"
+            @avancar="tela = 'selecaoDeHabilidadeJogador1'" @finalizar="iniciarNovoJogo"/>
         </template>
         <template #fallback>
-            <div>Carregando...</div> 
+            <div>Carregando...</div>
         </template>
     </Suspense>
 </template>
@@ -72,7 +70,7 @@ onMounted(async () => {
     padding: 0;
 }
 html, body {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 </style>

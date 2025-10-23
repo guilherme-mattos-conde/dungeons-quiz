@@ -14,9 +14,12 @@ const emit = defineEmits(["avancar"]);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5rem;
-    height: 100vh;
-    width: 100vw;
+    justify-content: center;
+    gap: 2rem;
+    min-height: 100vh;
+    height: 100%;
+    min-width: 100vw;
+    width: 100%;
     background: url('/images/fundo-tela-inicial.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -24,12 +27,21 @@ const emit = defineEmits(["avancar"]);
     background-attachment: fixed;
 }
 #titulo {
-    width: 800px;
+    width: 750px;
 }
 #btn-iniciar {
     width: 400px;
 }
 #btn-iniciar:hover {
     cursor: pointer;
+}
+
+@media (max-width: 950px) {
+    #titulo {
+        width: 95%;
+    }
+    #btn-iniciar {
+        width: 60%;
+    }
 }
 </style>

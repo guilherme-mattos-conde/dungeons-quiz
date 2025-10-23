@@ -3,33 +3,37 @@
         <div id="titulo">
             <h2>Turno do {{ jogadorAtacante.getNome() }}</h2>
         </div>
-        <div id="batalha">
-            <div class="personagem personagem-atacante">
-                <img :src="baseUrl + '/images/personagens/' + jogadorAtacante.getPersonagem().getImg()"
-                    alt="Imagem do personagem" />
-                <div class="atributos-do-personagem">
-                    <p class="nome">{{ jogadorAtacante.getNome() }}</p>
-                    <p class="vida">❤️ {{ jogadorAtacante.getPersonagem().getVida() }}</p>
+        <main>
+            <div id="batalha">
+                <div class="personagem personagem-atacante">
+                    <div id="container-img-personagem">
+                        <img :src="baseUrl + '/images/personagens/' + jogadorAtacante.getPersonagem().getImg()"
+                            alt="Imagem do personagem" />
+                    </div>
+                    <div class="atributos-do-personagem">
+                        <p class="nome">{{ jogadorAtacante.getNome() }}</p>
+                        <p class="vida">❤️ {{ jogadorAtacante.getPersonagem().getVida() }}</p>
+                    </div>
+                    
                 </div>
-                
-            </div>
-            <span>VS</span>
-            <div class="personagem personagem-atacado">
-                <div class="atributos-do-personagem">
-                    <p class="nome">{{ jogadorAtacado.getNome() }}</p>
-                    <p class="vida">❤️ {{ jogadorAtacado.getPersonagem().getVida() }}</p>
+                <span>VS</span>
+                <div class="personagem personagem-atacado">
+                    <div class="atributos-do-personagem">
+                        <p class="nome">{{ jogadorAtacado.getNome() }}</p>
+                        <p class="vida">❤️ {{ jogadorAtacado.getPersonagem().getVida() }}</p>
+                    </div>
+                    <div id="container-img-personagem">
+                        <img :src="baseUrl + '/images/personagens/' + jogadorAtacado.getPersonagem().getImg()"
+                            alt="Imagem do personagem" />
+                    </div>
                 </div>
-                <img :src="baseUrl + '/images/personagens/' + jogadorAtacado.getPersonagem().getImg()"
-                    alt="Imagem do personagem" />
             </div>
-        </div>
 
-        <div id="caixa-de-dialogo">
             <CaixaDePergunta :pergunta="pergunta" v-if="caixaDeDialogo === 'pergunta'" @avancar="verificarResposta"/>
             <FeedbackResposta :respostaEstaCorreta="true" v-else-if="caixaDeDialogo === 'resposta-correta'" @avancar="emit('avancar')"/>
             <FeedbackResposta :respostaEstaCorreta="false" v-else-if="caixaDeDialogo === 'resposta-incorreta'" @avancar="emit('avancar')"/>
             <CaixaDeVitória :jogadorAtacante="jogadorAtacante" v-else-if="caixaDeDialogo === 'vitoria'" @avancar="emit('finalizar')"/>
-        </div>
+        </main>
     </section>
 </template>
 
@@ -76,13 +80,15 @@ function verificarResposta(alternativaSelecionada: string) {
 }
 </script>
 
-<style scoped>
+<style>
 #tela-pergunta {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    min-width: 100vw;
+    width: 100%;
     background: url('/images/fundo-tela-pergunta.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -92,24 +98,32 @@ function verificarResposta(alternativaSelecionada: string) {
 
 #titulo {
     text-align: center;
-    margin: 20px 0;
-    font-size: 20pt;
+    margin-top: 40px;
+    font-size: 18pt;
     color: white;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 #batalha {
     display: flex;
-    margin-top: 10px;
     justify-content: space-around;
     align-items: center;
     width: 80vw;
-    margin: 20px 0;
+    max-width: 1000px;
 
     .personagem {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        margin-bottom: 25px;
 
         img {
             width: 280px;
@@ -136,11 +150,66 @@ function verificarResposta(alternativaSelecionada: string) {
     }
 }
 
-#caixa-de-dialogo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 700px;
-    gap: 2rem;
+@media (max-width: 1250px) {
+    #batalha {
+        .personagem {
+            img {
+                width: 200px;
+            }
+
+            .atributos-do-personagem {
+                font-size: 16pt;
+            }
+        }
+
+        span {
+            font-size: 40pt;
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    #titulo {
+        font-size: 16pt;
+    }
+    
+    #batalha {
+        width: 90%;
+
+        .personagem {
+            width: 35%;
+            flex-direction: column;
+            
+            #container-img-personagem {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            .atributos-do-personagem {
+                font-size: 13pt;
+                margin: 10px 0;
+                width: 100%;
+            }
+        }
+
+        .personagem-atacado {
+            flex-direction: column-reverse;
+
+            .atributos-do-personagem {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+        span {
+            font-size: 20pt;
+        }
+    }
 }
 </style>

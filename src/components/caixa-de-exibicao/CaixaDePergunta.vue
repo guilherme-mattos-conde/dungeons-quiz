@@ -28,6 +28,8 @@ const alternativas = computed(() => props.pergunta.getAlternativas());
     display: flex;
     justify-content: space-between;
     width: 75vw;
+    max-width: 1000px;
+    gap: 1rem;
     height: 120px;
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
@@ -43,17 +45,18 @@ const alternativas = computed(() => props.pergunta.getAlternativas());
 
     #alternativas {
         display: flex;
-        width: 600px;
-        justify-content: space-between;
+        flex-grow: 1;
+        justify-content: space-around;
+        gap: 1rem;
         flex-basis: 50%;
         flex-wrap: wrap;
     }
 
     .alternativa {
         font-size: 12pt;
-        min-width: 200px;
-        height: 40px;
-        cursor: pointer;
+        width: 200px;
+        height: auto;
+        
         background-color: rgb(127, 21, 21);
         color: white;
         border: 2px solid black;
@@ -64,7 +67,54 @@ const alternativas = computed(() => props.pergunta.getAlternativas());
 
     .alternativa:hover {
         opacity: 100%;
+        cursor: pointer;
         border: 2px solid black
+    }
+}
+
+@media (max-width: 1250px) {
+    #caixa-de-pergunta {
+        #texto-pergunta {
+            font-size: 13pt;
+            width: 400px;
+        }
+
+        #alternativas {  
+            gap: 1rem;
+            width: 400px;
+        }
+
+        .alternativa {
+            font-size: 11pt;
+            min-height: 35px;
+            width: 150px;
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    #caixa-de-pergunta {
+        width: 80%;
+        align-items: center;
+        height: auto;
+        flex-direction: column;
+
+        #texto-pergunta {
+            font-size: 13pt;
+            width: 90%;
+        }
+
+        #alternativas {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .alternativa {
+            font-size: 11pt;
+            min-height: 35px;
+            width: 100%;
+        }
     }
 }
 </style>
